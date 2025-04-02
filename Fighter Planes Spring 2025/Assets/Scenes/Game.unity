@@ -168,7 +168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyOnePrefab: {fileID: 8172367457994379185, guid: 8465677e623d04d4180bdf1ab3758e18, type: 3}
   enemyTwoPrefab: {fileID: 6248833822302118252, guid: c12ad2b931c6f104fbe5ed41e09bdfd4, type: 3}
-  enemyThreePrefab: {fileID: 7682690967711045530, guid: 61f46856ace4d9e47a6628464d74d321, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +369,7 @@ GameObject:
   - component: {fileID: 2083998438}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -387,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64351a7f65471cc45952823313df8491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lives: 3
   bulletPrefab: {fileID: 4275503643628232961, guid: f7fc8e5ccb43aee44a2316e2e3b3c723, type: 3}
 --- !u!65 &2083998439
 BoxCollider:

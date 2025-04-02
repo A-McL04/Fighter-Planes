@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private float EnemyTwoX;
+
+    private Player _player;
     
     void Awake()
     {
@@ -43,6 +45,29 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject);
         }
             
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Player player = other.transform.GetComponent<Player>();
+
+            if (player != null)
+            {
+                player.Damage();
+            }
+
+            Destroy(this.gameObject);
+
+        }
+
+        if (other.tag == "Bullet")
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
+
     }
 
 }

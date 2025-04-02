@@ -7,12 +7,17 @@ public class Player : MonoBehaviour
     
 
     private float playerSpeed;
+
     private float horizontalInput;
     private float verticalInput;
 
     private float horizontalScreenLimit = 9.5f;
 
+    [SerializeField] private int _lives = 3;
+
     public GameObject bulletPrefab;
+
+    private GameManager _gameManager;
 
     void Start()
     {
@@ -62,6 +67,20 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(horizontalScreenLimit, transform.position.y, 0);
         }
 
+
+    }
+
+    // If player gets hit by enemy, lose a life. When lives reach 0, destroy player and stop enemies form spawning
+    public void Damage()
+    {
+        _lives--;
+
+        if (_lives < 1)
+        { 
+       
+            Destroy(this.gameObject);
+
+        }
 
     }
 
