@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     {
         
         
-        Instantiate(enemyOnePrefab, new Vector3(Random.Range(-7.7f, 7.7f), 6.5f, 0), Quaternion.identity);
+        Instantiate(enemyOnePrefab, new Vector3(Random.Range(-10.5f, 10.5f), 6.5f, 0), Quaternion.identity);
         
         
     }
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     void CreateEnemyTwo()
     {
         
-        Instantiate(enemyTwoPrefab, new Vector3(Random.Range(-7.7f, 7.7f), 6.5f, 0), Quaternion.identity);
+        Instantiate(enemyTwoPrefab, new Vector3(Random.Range(-10.5f, 10.5f), 6.5f, 0), Quaternion.identity);
 
         
     }

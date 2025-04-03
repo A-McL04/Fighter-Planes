@@ -13,7 +13,12 @@ public class Enemy : MonoBehaviour
         // Each time Enemy 2 spawns, the horizontal velocity will be different
         EnemyTwoX = Random.Range(-0.5f, 0.5f);
     }
-    
+
+    void Start()
+    {
+        _player = GameObject.Find("Player").GetComponent<Player>();
+    }
+
     void Update()
     {
         if (gameObject.tag == "EnemyOne")
@@ -64,7 +69,13 @@ public class Enemy : MonoBehaviour
 
         if (other.tag == "Bullet")
         {
+            if (_player != null)
+            {
+                _player.AddScore(10);
+            }
+
             Destroy(other.gameObject);
+
             Destroy(this.gameObject);
         }
 

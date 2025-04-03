@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,18 +12,21 @@ public class Player : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
-    private float horizontalScreenLimit = 9.5f;
+    private float horizontalScreenLimit = 11.0f;
 
     [SerializeField] private int _lives = 3;
 
     public GameObject bulletPrefab;
 
-    private GameManager _gameManager;
+    [SerializeField] private int _score;
+    private UIManager _uiManager;
 
     void Start()
     {
         playerSpeed = 6f;
         transform.position = new Vector3(0, -1, 0);
+
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         
 
     }
@@ -60,17 +64,17 @@ public class Player : MonoBehaviour
 
         if (transform.position.x >= horizontalScreenLimit)
         {
-            transform.position = new Vector3(horizontalScreenLimit * -1, transform.position.y, 0);
+            transform.position = new Vector3(-10.7f, transform.position.y, 0);
         }
         else if (transform.position.x <= horizontalScreenLimit * -1)
         {
-            transform.position = new Vector3(horizontalScreenLimit, transform.position.y, 0);
+            transform.position = new Vector3(10.7f, transform.position.y, 0);
         }
 
 
     }
 
-    // If player gets hit by enemy, lose a life. When lives reach 0, destroy player and stop enemies form spawning
+    // If player gets hit by enemy, lose a life. When lives reach 0, destroy player
     public void Damage()
     {
         _lives--;
@@ -82,6 +86,12 @@ public class Player : MonoBehaviour
 
         }
 
+    }
+
+    public void AddScore(int points)
+    {
+        _score += points;
+        _uiManager.UpdateScore(_score);
     }
 
 }
