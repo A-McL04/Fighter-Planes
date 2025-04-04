@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject enemyOnePrefab;
     public GameObject enemyTwoPrefab;
+    public GameObject coinPrefab;
+    public GameObject cloudPrefab;
 
     
 
@@ -16,6 +18,9 @@ public class GameManager : MonoBehaviour
         // if player is alive, keep spawning enemies
         InvokeRepeating("CreateEnemyOne", 1, 2);
         InvokeRepeating("CreateEnemyTwo", 2, 3);
+        InvokeRepeating("CreateCoin", 10, 10);
+
+        CreateSky();
         
         
     }
@@ -38,6 +43,18 @@ public class GameManager : MonoBehaviour
         
     }
 
-    
+    void CreateCoin()
+    {
+        Instantiate(coinPrefab, new Vector3(Random.Range(-10.5f, 10.5f), Random.Range(-3.5f, 0.2f), 0), Quaternion.identity);
+    }
+
+    void CreateSky()
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            Instantiate(cloudPrefab, new Vector3(Random.Range(-10.5f, 10.5f), Random.Range(-2.5f, 6.5f), 0), Quaternion.identity);
+        }
+
+    }
 
 }

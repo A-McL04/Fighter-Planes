@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private float EnemyTwoX;
+    private float EnemyTwoRotate;
 
     private Player _player;
     
     void Awake()
     {
-        // Each time Enemy 2 spawns, the horizontal velocity will be different
-        EnemyTwoX = Random.Range(-0.5f, 0.5f);
+        // Each time Enemy 2 spawns, the rotation will be different
+        EnemyTwoRotate = Random.Range(160.0f, 200.0f);
+
+        if (gameObject.tag == "EnemyOne")
+        {
+            transform.Rotate(0.0f, 0.0f, 180f, Space.World);
+        }
+        else if (gameObject.tag == "EnemyTwo")
+        {
+            transform.Rotate(0.0f, 0.0f, EnemyTwoRotate, Space.World);
+        }
+        
     }
 
     void Start()
@@ -34,7 +44,8 @@ public class Enemy : MonoBehaviour
 
     void EnemyOneMovement()
     {
-        transform.Translate(new Vector3(0, -1, 0) * Time.deltaTime * 3f);
+        transform.Translate(new Vector3(0, 1, 0) * Time.deltaTime * 3f);
+
         if (transform.position.y < -6.5f)
         {
            Destroy(this.gameObject);
@@ -43,8 +54,8 @@ public class Enemy : MonoBehaviour
 
     void EnemyTwoMovement()
     {
-        // Enemy 2 will move vertically just like enemy one, but will also move horizontally based on the value of EnemyTwoX
-        transform.Translate(new Vector3(EnemyTwoX, -1, 0) * Time.deltaTime * 3f);
+        // Enemy 2 will move faster than enemy one and will have a random rotation each time it spawns in
+        transform.Translate(new Vector3(0, 2f, 0) * Time.deltaTime * 3f);
         if (transform.position.y < -6.5f)
         {
             Destroy(this.gameObject);
@@ -52,7 +63,7 @@ public class Enemy : MonoBehaviour
             
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
