@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemyTwoPrefab;
     public GameObject coinPrefab;
     public GameObject cloudPrefab;
+    public GameObject powerUpPrefab;
 
     
 
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("CreateEnemyOne", 1, 2);
         InvokeRepeating("CreateEnemyTwo", 2, 3);
         InvokeRepeating("CreateCoin", 10, 10);
+        InvokeRepeating("CreatePowerUp", 15, 25);
 
         CreateSky();
         
@@ -47,6 +49,11 @@ public class GameManager : MonoBehaviour
     {
         Instantiate(coinPrefab, new Vector3(Random.Range(-10.5f, 10.5f), Random.Range(-3.5f, 0.2f), 0), Quaternion.identity);
     }
+
+    void CreatePowerUp()
+    {
+        Instantiate(powerUpPrefab, new Vector3(Random.Range(-10.5f, 10.5f), Random.Range(-3.5f, 0.2f), 0), Quaternion.identity);
+    }   
 
     void CreateSky()
     {

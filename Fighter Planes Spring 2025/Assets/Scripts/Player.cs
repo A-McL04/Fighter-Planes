@@ -17,6 +17,13 @@ public class Player : MonoBehaviour
     [SerializeField] private int _lives = 3;
 
     public GameObject bulletPrefab;
+    public GameObject shieldVisualizer;
+
+    private bool isShieldsActive = false;
+
+    public AudioClip shieldOn;
+    public AudioClip shieldOff;
+    AudioSource audio;
 
     [SerializeField] private int _score;
     private UIManager _uiManager;
@@ -28,7 +35,7 @@ public class Player : MonoBehaviour
 
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         
-
+        audio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -77,15 +84,35 @@ public class Player : MonoBehaviour
     // If player gets hit by enemy, lose a life. When lives reach 0, destroy player
     public void Damage()
     {
-        _lives--;
-
-        if (_lives < 1)
-        { 
-       
-            Destroy(this.gameObject);
-
+        if (isShieldsActive == true)
+        {
+            isShieldsActive = false;
+            shieldVisualizer.SetActive(false);
+            audio.clip = shieldOff;
+            audio.Play();
+            return;
         }
 
+        else
+        {
+            _lives--;
+
+            if (_lives < 1)
+            {
+
+                Destroy(this.gameObject);
+
+            }
+        }
+
+    }
+
+    public void ActivateShields()
+    {
+        isShieldsActive = true;
+        shieldVisualizer.SetActive(true);
+        audio.clip = shieldOn;
+        audio.Play();
     }
 
     public void AddScore(int points)
